@@ -1,0 +1,8 @@
+main: main.o raster.o 
+	cc68x -g main.o raster.o -o main
+
+main.o: main.c raster.h
+	cc68x -g -c main.c
+
+raster.o: raster.c raster.h
+	cc68x -g -c raster.c

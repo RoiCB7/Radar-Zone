@@ -1,21 +1,12 @@
 #include <stdio.h>
 #include <linea.h>
 #include <osbind.h>
+#include "raster.h"
 
 #define SOLID 0xFFFF
 #define XOR		2
 #define HEIGHT 16
-
-typedef unsigned char UINT8;
-typedef unsigned int  UINT16;
-typedef unsigned long UINT32;
-
-void plot_line(unsigned short x1, unsigned short y1,
-			   unsigned short x2, unsigned short y2,
-			   short style, short mode);
-
-void print_bitmap(UINT16 *base, int x, int y, const UINT16 *bitmap,
-unsigned int height);
+#define BYTES_PER_SCREEN 32000
 
 const UINT16 playerBot [HEIGHT] = {
 	0x0000,
@@ -61,9 +52,11 @@ int main()
 	int y =0;
 	int x =0;
 	UINT16 *base = Physbase();
+	long *base2 = Physbase(); 
 
 	
 	printf("\033E\033f\n"); /*delete this and the next line and make our own fill screen*/
+	/*fill_screen(base2, 0);*/
 	linea0();				/*delete this too*/
 	
 	/*make our own fill screen*/
@@ -82,33 +75,4 @@ int main()
 
 	Cnecin();
 	return 0;
-}
-
-void plot_line(unsigned short x1, unsigned short y1,
-			   unsigned short x2, unsigned short y2,
-			   short style, short mode)
-			   {
-X1 = x1;
-Y1 = y1;
-X2 = x2;
-Y2 = y2;
-LNMASK =style;
-WMODE = mode;
-LSTLIN =0;
-linea3(); /*delete this later, may need to make our own?*/			   			   	   
-}
-
-
-
-void print_bitmap(UINT16 *base, int x, int y, const UINT16 *bitmap,
-unsigned int height)
-{
-int i;
-int offset;
-
-offset = (x>>4) + (y*40);
-for(i=0; i < height; i++)*(base + offset + (40*i)) |= bitmap[i];
-
-return;
-
 }
