@@ -1,7 +1,8 @@
- #include "raster.h"
+#include "raster.h"
 #include <stdio.h>
 #include <linea.h>
 #include <osbind.h>
+
 
 #define SOLID 0xFFFF
 #define XOR		2

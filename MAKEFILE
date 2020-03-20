@@ -1,8 +1,16 @@
-main: main.o raster.o 
-	cc68x -g main.o raster.o -o main
+main: main.o raster.o model.o renderer.o
+	cc68x -g main.o raster.o model.o renderer.o -o main
 
-main.o: main.c raster.h
+main.o: main.c raster.h model.h renderer.h
 	cc68x -g -c main.c
 
 raster.o: raster.c raster.h
 	cc68x -g -c raster.c
+
+model.o: model.c model.h
+	cc68x -g -c model.c
+
+renderer.o: renderer.c renderer.h model.h raster.c
+	cc68x -g -c renderer.c
+
+	
