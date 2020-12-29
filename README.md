@@ -8,4 +8,3 @@ In order to do this;
 1. Type in 'make' without quotations at the prompt.
 2. To run the game, type in 'main' without quotations.
 
-As of now the game is not in a playable state. 
